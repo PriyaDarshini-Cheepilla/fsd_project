@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - ExploreIND</title>
+    <style>
+        body {
+            background-image: url('bg1.jpeg'); /* Fixed filename */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding-right: 50px;
+        }
+
+        .register-box {
+            width: 400px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 28px;
+                font-weight: bold;
+                color: #E60023;
+                font-family: 'Pacifico', cursive;
+                margin-bottom: 20px;
+        }
+
+        input {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #ff6600;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        a {
+            text-decoration: none;
+            font-size: 14px;
+            color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="register-box">
+        <h2>Join ExploreIND</h2>
+        <input type="text" id="full-name" placeholder="Full Name">
+        <input type="email" id="register-email" placeholder="Email">
+        <input type="tel" id="phone" placeholder="Phone Number (10 digits)" maxlength="10">
+        <input type="password" id="register-password" placeholder="Password">
+        <input type="password" id="confirm-password" placeholder="Confirm Password">
+        <button onclick="registerUser()">Sign Up</button>
+        <p>Already have an account? <a href="index.html">Log in</a></p>
+    </div>
+
+    <script>
+        function registerUser() {
+            let fullName = document.getElementById('full-name').value.trim();
+            let email = document.getElementById('register-email').value.trim().toLowerCase();
+            let phone = document.getElementById('phone').value.trim();
+            let password = document.getElementById('register-password').value.trim();
+            let confirmPassword = document.getElementById('confirm-password').value.trim();
+
+            // Validation checks
+            if (!fullName || !email || !phone || !password || !confirmPassword) {
+                alert("Please fill in all fields.");
+                return;
+            }
+
+            if (!/^\S+@\S+\.\S+$/.test(email)) {
+                alert("Invalid email format!");
+                return;
+            }
+
+            if (!/^\d{10}$/.test(phone)) {
+                alert("Phone number must be exactly 10 digits!");
+                return;
+            }
+
+            if (password.length < 6) {
+                alert("Password must be at least 6 characters long!");
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return;
+            }
+
+            if (localStorage.getItem(email)) {
+                alert("User already exists! Please log in.");
+                return;
+            }
+
+            // Store user details in localStorage
+            let userData = {
+                fullName: fullName,
+                email: email,
+                phone: phone,
+                password: password
+            };
+
+            localStorage.setItem(email, JSON.stringify(userData));
+            alert("Registration successful! Please login.");
+            window.location.href = "index.html";
+        }
+    </script>
+
+</body>
+</html>

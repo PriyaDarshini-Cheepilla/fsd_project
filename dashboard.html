@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - ExploreIND</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            text-align: center;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 50px;
+        }
+
+        button {
+            padding: 12px 20px;
+            background: #E60023;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #c5001a;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Welcome to ExploreIND</h1>
+        <p id="user-email">Loading...</p>
+        <button onclick="logoutUser()">Logout</button>
+    </div>
+
+    <script>
+        let loggedInUser = localStorage.getItem("loggedInUser");
+
+        if (loggedInUser) {
+            document.getElementById("user-email").textContent = "Logged in as: " + loggedInUser;
+        } else {
+            alert("You are not logged in! Redirecting to login...");
+            window.location.href = "index.html";
+        }
+
+        function logoutUser() {
+            localStorage.clear();
+            alert("Logged out successfully!");
+            window.location.href = "index.html";
+        }
+    </script>
+
+</body>
+</html>

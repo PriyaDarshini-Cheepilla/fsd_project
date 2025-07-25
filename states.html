@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>India Map</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    body {
+      overflow: hidden;
+      background: radial-gradient(circle, rgba(6,66,115,1) 0%, rgba(29,162,216,1) 55%, rgba(222,243,246,1) 100%);
+    }
+    svg {
+      position: fixed;
+      overflow: hidden;
+      width: 90%;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 90%;
+      z-index: 1;
+    }
+    svg path {
+      cursor: pointer;
+    }
+    .highlight {
+      fill: rgb(241, 134, 134);
+    }
+  </style>
+</head>
+<body>
+  <div id="name">
+    <p id="namem"></p>
+  </div>
+
+  <div id="parent">
+    <div id="data">
+      <p id="datam"></p>
+    </div>
+  </div>
+
+  <!-- Include your full SVG map here -->
+  <!-- Example: <svg>...<path id="Andhra Pradesh" name="Andhra Pradesh">...</path></svg> -->
+  <!-- Use the path tags with class="allPaths" and name="State Name" -->
+
+  <script>
+    const statePages = {
+      "Andhra Pradesh": "places/andhra.html",
+      "Arunachal Pradesh": "places/arunachal.html",
+      "Assam": "places/assam.html",
+      "Bihar": "places/bihar.html",
+      "Chhattisgarh": "places/chhattisgarh.html",
+      "Goa": "places/goa.html",
+      "Gujarat": "places/gujarat.html",
+      "Haryana": "places/haryana.html",
+      "Himachal Pradesh": "places/himachal.html",
+      "Jharkhand": "places/jharkhand.html",
+      "Karnataka": "places/karnataka.html",
+      "Kerala": "places/kerala.html",
+      "Madhya Pradesh": "places/madhya.html",
+      "Maharashtra": "places/maharashtra.html",
+      "Manipur": "places/manipur.html",
+      "Meghalaya": "places/meghalaya.html",
+      "Mizoram": "places/mizoram.html",
+      "Nagaland": "places/nagaland.html",
+      "Odisha": "places/odisha.html",
+      "Punjab": "places/punjab.html",
+      "Rajasthan": "places/rajasthan.html",
+      "Sikkim": "places/sikkim.html",
+      "Tamil Nadu": "places/tamilnadu.html",
+      "Telangana": "places/telangana.html",
+      "Tripura": "places/tripura.html",
+      "Uttarakhand": "places/uttarakhand.html",
+      "Uttar Pradesh": "places/up.html",
+      "West Bengal": "places/westbengal.html"
+    };
+
+    document.querySelectorAll("path.allPaths").forEach(path => {
+      const stateName = path.getAttribute("name")?.trim();
+      path.addEventListener("click", () => {
+        if (statePages[stateName]) {
+          window.open(statePages[stateName], '_blank');
+        } else {
+          alert("Page not found for " + stateName);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
